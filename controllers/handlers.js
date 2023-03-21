@@ -1,25 +1,17 @@
 let id = 1;
 let data = [];
-const { body, validationResult, check } = require("express-validator");
+
 const addDataHandler = (body) => {
-    
-    
-  
-  
   data.push({
     id: `${id++}`,
     userName: `${body.user}`,
     password: `${body.password}`,
     age: Number(body.age),
     isDeleted: false,
-    
   });
   return {
-    "status":"successfully inserted"
-  }
-  
-
- 
+    status: "successfully inserted",
+  };
 };
 const getDateHandler = (body) => {
   for (const personData of data) {
@@ -49,8 +41,6 @@ const deleteDataHandler = (body) => {
 };
 
 const updateDataHandler = (body) => {
-
-
   const id = Number(body.updateId);
   //const {oldUser,oldPassword,oldAge}=data[id-1];
   const oldData = data[id - 1];

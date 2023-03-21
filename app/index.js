@@ -9,8 +9,7 @@ const {
   deleteDataHandler,
   autoSuggestHandler,
 } = require("../controllers/handlers");
-// let id = 1;
-// let data = [];
+
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -25,21 +24,21 @@ app.post(
       .withMessage("age must be between 4 and 130 "),
     validatePassword,
   ],
-  (req,res)=>{
+  (req, res) => {
     const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    res.status(400).send(errors);
-  }
-    const acknowleagement=addDataHandler(req.body);
+    if (!errors.isEmpty()) {
+      res.status(400).send(errors);
+    }
+    const acknowleagement = addDataHandler(req.body);
     res.send(acknowleagement);
   }
 );
-app.post("/get", (req,res)=>{
-  const acknowleagement=getDateHandler(req.body);
+app.post("/get", (req, res) => {
+  const acknowleagement = getDateHandler(req.body);
   res.send(acknowleagement);
 });
-app.post("/delete", (req,res)=>{
-  const acknowleagement=deleteDataHandler(req.body);
+app.post("/delete", (req, res) => {
+  const acknowleagement = deleteDataHandler(req.body);
   res.send(acknowleagement);
 });
 app.post(
@@ -50,17 +49,17 @@ app.post(
       .withMessage("age must be between 4 and 130 "),
     validatePassword,
   ],
-  (req,res)=>{
+  (req, res) => {
     const errors = validationResult(req);
-    const acknowleagement=updateDataHandler(req.body);
+    const acknowleagement = updateDataHandler(req.body);
     if (!errors.isEmpty()) {
       res.status(400).send(errors);
     }
     res.send(acknowleagement);
   }
 );
-app.post("/autoSuggest", (req,res)=>{
-  const acknowleagement=autoSuggestHandler(req.body)
+app.post("/autoSuggest", (req, res) => {
+  const acknowleagement = autoSuggestHandler(req.body);
   res.send(acknowleagement);
 });
 
